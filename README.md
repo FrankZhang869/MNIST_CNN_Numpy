@@ -32,7 +32,7 @@ Each image is flattened or processed as a 2D matrix depending on the layer.
 
 ---
 
-## 🏗 Architecture
+## Architecture
 
 The network includes:
 
