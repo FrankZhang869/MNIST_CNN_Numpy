@@ -1,0 +1,19 @@
+def Softmax_Cross_Entropy(logits, labels):
+
+    batch_size = logits.shape[0]
+
+    # Numerical stability
+    logits_shifted = logits - np.max(logits, axis=1, keepdims=True)
+
+    exp_logits = np.exp(logits_shifted)
+    probs = exp_logits / np.sum(exp_logits, axis=1, keepdims=True)
+
+    # Cross-entropy loss
+    loss = -np.sum(np.log(probs[np.arange(batch_size), labels])) / batch_size
+
+    # Gradient w.r.t logits
+    d_logits = probs.copy()
+    d_logits[np.arange(batch_size), labels] -= 1
+    d_logits /= batch_size
+
+    return loss, d_logits
