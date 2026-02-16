@@ -1,0 +1,6 @@
+class ReLu:
+    def forward (self, X):
+        self.X = X
+        return np.maximum(0, X)
+    def backward (self, d_out):
+        return d_out * (self.X > 0)
